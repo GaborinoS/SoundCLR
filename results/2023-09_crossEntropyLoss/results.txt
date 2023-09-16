@@ -1,0 +1,81 @@
+*****
+BASELINE
+transfer - augmentation on both waves and specs - 3 channels
+ESC_10
+train folds are [2, 3, 4, 5] and test fold is [1]
+number of freq masks are 2 and their max length is 32
+number of time masks are 1 and their max length is 32
+*****
+
+
+Epoch: 1/800... Loss: 2.1012... Val Loss: 1.7646
+train_acc is 0.3156 and val_acc is 0.5375
+Validation loss decreased (inf --> -0.537500).  Saving model ...
+
+
+Epoch: 2/800... Loss: 1.5611... Val Loss: 1.1196
+train_acc is 0.6750 and val_acc is 0.7875
+Validation loss decreased (-0.537500 --> -0.787500).  Saving model ...
+
+
+Epoch: 3/800... Loss: 1.0707... Val Loss: 0.6335
+train_acc is 0.7875 and val_acc is 0.8750
+Validation loss decreased (-0.787500 --> -0.875000).  Saving model ...
+
+
+Epoch: 4/800... Loss: 0.7536... Val Loss: 0.6912
+train_acc is 0.8250 and val_acc is 0.7875
+EarlyStopping counter: 1 out of 300
+EarlyStopping counter: 1 out of 300
+
+
+Epoch: 5/800... Loss: 0.7674... Val Loss: 0.6922
+train_acc is 0.8125 and val_acc is 0.7250
+EarlyStopping counter: 2 out of 300
+EarlyStopping counter: 2 out of 300
+
+
+Epoch: 6/800... Loss: 0.8195... Val Loss: 0.5018
+train_acc is 0.7469 and val_acc is 0.8750
+Validation loss decreased (-0.875000 --> -0.875000).  Saving model ...
+
+
+Epoch: 7/800... Loss: 0.6949... Val Loss: 0.3680
+train_acc is 0.8063 and val_acc is 0.9000
+Validation loss decreased (-0.875000 --> -0.900000).  Saving model ...
+
+
+Epoch: 8/800... Loss: 0.6519... Val Loss: 0.8193
+train_acc is 0.8187 and val_acc is 0.6375
+EarlyStopping counter: 1 out of 300
+EarlyStopping counter: 1 out of 300
+
+
+Epoch: 9/800... Loss: 0.6046... Val Loss: 0.8006
+train_acc is 0.8562 and val_acc is 0.7375
+EarlyStopping counter: 2 out of 300
+EarlyStopping counter: 2 out of 300
+
+
+Epoch: 10/800... Loss: 0.6018... Val Loss: 0.8565
+train_acc is 0.8313 and val_acc is 0.7750
+EarlyStopping counter: 3 out of 300
+EarlyStopping counter: 3 out of 300
+
+
+Epoch: 11/800... Loss: 0.6282... Val Loss: 0.4547
+train_acc is 0.8187 and val_acc is 0.8625
+EarlyStopping counter: 4 out of 300
+EarlyStopping counter: 4 out of 300
+
+
+Epoch: 12/800... Loss: 0.5176... Val Loss: 0.8308
+train_acc is 0.8656 and val_acc is 0.7750
+EarlyStopping counter: 5 out of 300
+EarlyStopping counter: 5 out of 300
+
+
+Epoch: 13/800... Loss: 0.5440... Val Loss: 0.5562
+train_acc is 0.8438 and val_acc is 0.8875
+EarlyStopping counter: 6 out of 300
+EarlyStopping counter: 6 out of 300

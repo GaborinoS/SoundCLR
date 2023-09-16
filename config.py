@@ -1,5 +1,5 @@
-ESC_10 = False
-ESC_50 = True
+ESC_10 = True
+ESC_50 = False
 US8K = False
 
 
@@ -41,7 +41,7 @@ freq_masks_width = 32
 time_masks_width = 32
 
 epochs = 800
-batch_size = 128
+batch_size = 24
 warm_epochs = 10
 gamma = 0.98
 

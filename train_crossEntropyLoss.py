@@ -8,69 +8,62 @@ import datetime
 import sys
 
 from models import model_classifier
-from utils.utils import EarlyStopping, WarmUpExponentialLR
+from utils_dir.utils import *
 import config
 
 if config.ESC_10:
-	import dataset_ESC10 as dataset
+    import dataset_ESC10 as dataset
 elif config.ESC_50:
-	import dataset_ESC50 as dataset
+    import dataset_ESC50 as dataset
 elif config.US8K:
-	import dataset_US8K as dataset
-
+    import dataset_US8K as dataset
 
 use_cuda = torch.cuda.is_available()
 device = torch.device("cuda" if use_cuda else "cpu")
 
-
-model =torchvision.models.resnet50(pretrained=True).to(device)
+# Update the model loading line
+model = torchvision.models.resnet50(pretrained=True).to(device)
 model.fc = nn.Sequential(nn.Identity())
 
-
-model = nn.DataParallel(model, device_ids=[0,1])
+model = nn.DataParallel(model, device_ids=[0])
 model = model.to(device)
-
 
 classifier = model_classifier.Classifier().to(device)
 
-
 train_loader, val_loader = dataset.create_generators()
 
-
-
-
 root = './results/'
-main_path = root + str(datetime.datetime.now().strftime('%Y-%m-%d-%H-%M'))
+main_path = root + str(datetime.datetime.now().strftime('%Y-%m')) + "_crossEntropyLoss"
 if not os.path.exists(main_path):
-	os.mkdir(main_path)
+    os.mkdir(main_path)
 
 classifier_path = main_path + '/' + 'classifier'
-os.mkdir(classifier_path)
 
+# Modify the code that creates directories to handle existing directories
+if not os.path.exists(classifier_path):
+    os.mkdir(classifier_path)
+else:
+    print(f"Directory {classifier_path} already exists.")
 
-
-optimizer = torch.optim.AdamW(list(model.parameters())+ list(classifier.parameters()), 
+optimizer = torch.optim.AdamW(list(model.parameters()) + list(classifier.parameters()),
                              lr=config.lr, weight_decay=1e-3)
 
-scheduler = WarmUpExponentialLR(optimizer, cold_epochs= 0, warm_epochs= config.warm_epochs, gamma=config.gamma)
-
-
+scheduler = WarmUpExponentialLR(optimizer, cold_epochs=0, warm_epochs=config.warm_epochs, gamma=config.gamma)
 
 def hotEncoder(v):
-	ret_vec = torch.zeros(v.shape[0], config.class_numbers).to(device)
-	for s in range(v.shape[0]):
-		ret_vec[s][v[s]] = 1
-	return ret_vec
-
-
-
+    ret_vec = torch.zeros(v.shape[0], config.class_numbers).to(device)
+    for s in range(v.shape[0]):
+        ret_vec[s][v[s]] = 1
+    return ret_vec
 
 def cross_entropy_one_hot(input, target):
-	_, labels = target.max(dim=1)
-	return nn.CrossEntropyLoss(weight=class_weights)(input, labels)
+    _, labels = target.max(dim=1)
+    return nn.CrossEntropyLoss(weight=class_weights)(input, labels)
 
-
-
+###########################################################################################
+class_weights = torch.tensor([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]).to(device)
+main_model = model.module if hasattr(model, 'module') else model
+###########################################################################################
 
 def train_crossEntropy():
 	num_epochs = 800
@@ -152,6 +145,7 @@ def train_crossEntropy():
 					val_corrects += (torch.argmax(y_pred, dim=1) == torch.argmax(label_vec, dim=1)).sum().item() 
 					val_samples_count += val_x.shape[0]
         
+		
         
 			scheduler.step()
         
@@ -170,4 +164,3 @@ def train_crossEntropy():
 
 if __name__ == "__main__":
 	train_crossEntropy()
-
