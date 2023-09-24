@@ -105,19 +105,15 @@ class MyDataset(data.Dataset):
         return file_name, spec, class_id
         
 
-    
-    
-    
- 
 
 def create_generators():
     train_dataset = MyDataset(train=True)
     test_dataset = MyDataset(train=False)
     
+
     train_loader = data.DataLoader(train_dataset, batch_size = config.batch_size, shuffle=True, num_workers=10 ,drop_last=False)
     
     test_loader = data.DataLoader(test_dataset, batch_size = config.batch_size, shuffle=True, num_workers=10 ,drop_last=False)
     
     return train_loader, test_loader
-    
-   
+

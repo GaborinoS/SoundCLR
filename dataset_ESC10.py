@@ -103,9 +103,7 @@ class MyDataset(data.Dataset):
         spec = torch.cat((log_s, log_s, log_s), dim=0)
         
         return file_name, spec, class_id
-        
-    
-    
+
     
     
 def create_generators():
@@ -120,4 +118,3 @@ def create_generators():
     return train_loader, test_loader
     
     
-   

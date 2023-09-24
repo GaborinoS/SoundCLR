@@ -1,5 +1,5 @@
 ESC_10 = True
-ESC_50 = False
+ESC_50 = False	
 US8K = False
 
 
@@ -30,7 +30,9 @@ else:
 	test_fold = [1]
 	train_folds = list(i for i in range(1, 11) if i != test_fold[0])	
 	
-
+if US8K:
+	us8k_train_folds = [1, 2, 3, 4, 5, 6, 7, 8]
+	us8k_test_fold = [9]
 
 temperature = 0.05
 alpha = 0.5
@@ -41,7 +43,7 @@ freq_masks_width = 32
 time_masks_width = 32
 
 epochs = 800
-batch_size = 24
+batch_size = 16
 warm_epochs = 10
 gamma = 0.98
 

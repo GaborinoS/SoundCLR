@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from torch.utils import data
-from utils import transforms
+from utils_dir import transforms
 import torchvision
 
 import os

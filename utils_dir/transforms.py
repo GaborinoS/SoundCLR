@@ -156,6 +156,7 @@ class FrequencyMask():
     
     def __call__(self, wave):
         return self.addFreqMask(wave)
+        
     
         
 

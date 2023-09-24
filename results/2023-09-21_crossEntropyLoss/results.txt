@@ -1,0 +1,13 @@
+*****
+BASELINE
+transfer - augmentation on both waves and specs - 3 channels
+US8K
+train folds are [1, 2, 3, 4, 5, 6, 7, 8] and test fold is [9]
+number of freq masks are 2 and their max length is 32
+number of time masks are 1 and their max length is 32
+*****
+
+
+Epoch: 1/800... Loss: 1.5046... Val Loss: 0.9166
+train_acc is 0.5347 and val_acc is 0.7443
+Validation loss decreased (inf --> -0.744266).  Saving model ...
